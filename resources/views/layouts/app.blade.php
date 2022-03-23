@@ -24,6 +24,11 @@
     <link rel="stylesheet" href=".quixlab/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
     <!-- Custom Stylesheet -->
     <link href="quixlab/css/style.css" rel="stylesheet">
+    <style>
+        body{
+            font-family: 'Times New Roman', Times, serif;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -92,26 +97,27 @@
     <script src="quixlab/js/styleSwitcher.js"></script>
 
     <!-- Chartjs -->
-    <script src=".quixlab/plugins/chart.js/Chart.bundle.min.js"></script>
+    <script src="./quixlab/plugins/chart.js/Chart.bundle.min.js"></script>
     <!-- Circle progress -->
-    <script src=".quixlab/plugins/circle-progress/circle-progress.min.js"></script>
+    <script src="./quixlab/plugins/circle-progress/circle-progress.min.js"></script>
     <!-- Datamap -->
-    <script src=".quixlab/plugins/d3v3/index.js"></script>
-    <script src=".quixlab/plugins/topojson/topojson.min.js"></script>
-    <script src=".quixlab/plugins/datamaps/datamaps.world.min.js"></script>
+    <script src="./quixlab/plugins/d3v3/index.js"></script>
+    <script src="./quixlab/plugins/topojson/topojson.min.js"></script>
+    <script src="./quixlab/plugins/datamaps/datamaps.world.min.js"></script>
     <!-- Morrisjs -->
-    <script src=".quixlab/plugins/raphael/raphael.min.js"></script>
-    <script src=".quixlab/plugins/morris/morris.min.js"></script>
+    <script src="./quixlab/plugins/raphael/raphael.min.js"></script>
+    <script src="./quixlab/plugins/morris/morris.min.js"></script>
     <!-- Pignose Calender -->
-    <script src=".quixlab/plugins/moment/moment.min.js"></script>
-    <script src=".quixlab/plugins/pg-calendar/js/pignose.calendar.min.js"></script>
+    <script src="./quixlab/plugins/moment/moment.min.js"></script>
+    <script src="./quixlab/plugins/pg-calendar/js/pignose.calendar.min.js"></script>
     <!-- ChartistJS -->
-    <script src=".quixlab/plugins/chartist/js/chartist.min.js"></script>
-    <script src=".quixlab/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
+    <script src="./quixlab/plugins/chartist/js/chartist.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+    <script src="./quixlab/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
 
 
 
-    <script src=".quixlab/js/dashboard/dashboard-1.js"></script>
+    <script src="./quixlab/js/dashboard/dashboard-1.js"></script>
 
 </body>
 </html>

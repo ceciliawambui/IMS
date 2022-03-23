@@ -262,7 +262,7 @@
                             <!-- <li><a href="./index-2.html">Home 2</a></li> -->
                         </ul>
                     </li>
-                    <li class="mega-menu mega-menu-sm">
+                    {{-- <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Layouts</span>
                         </a>
@@ -280,8 +280,8 @@
                             <li><a href="./layout-fixed-header.html">Fixed Header</a></li>
                             <li><a href="layout-fixed-sidebar.html">Fixed Sidebar</a></li>
                         </ul>
-                    </li>
-                    <li class="nav-label">Apps</li>
+                    </li> --}}
+                    {{-- <li class="nav-label">Apps</li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-envelope menu-icon"></i> <span class="nav-text">Email</span>
@@ -395,7 +395,7 @@
                                     <li><a href="./page-error-503.html">Error 503</a></li>
                                 </ul>
                             </li>
-                        </ul>
+                        </ul> --}}
                     </li>
                 </ul>
             </div>

@@ -20,3 +20,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Supplier Routes
+Route::resource('suppliers', 'App\Http\Controllers\SupplierController');
+Route::post('delete-supplier', 'App\Http\Controllers\SupplierController@destroy');
+Route::get('suppliers/restore/{id}', 'App\Http\Controllers\SupplierController@restore')->name('suppliers.restore');
+Route::get('suppliers/forceDelete/{id}', 'App\Http\Controllers\SupplierController@forceDelete')->name('suppliers.forceDelete');
