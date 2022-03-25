@@ -26,3 +26,10 @@ Route::resource('suppliers', 'App\Http\Controllers\SupplierController');
 Route::post('delete-supplier', 'App\Http\Controllers\SupplierController@destroy');
 Route::get('suppliers/restore/{id}', 'App\Http\Controllers\SupplierController@restore')->name('suppliers.restore');
 Route::get('suppliers/forceDelete/{id}', 'App\Http\Controllers\SupplierController@forceDelete')->name('suppliers.forceDelete');
+
+
+// Category Routes
+Route::resource('categories', 'App\Http\Controllers\CategoryController');
+Route::post('delete-category', 'App\Http\Controllers\CategoryController@destroy');
+Route::get('categories/restore/{id}', 'App\Http\Controllers\CategoryController@restore')->name('categories.restore');
+Route::get('categories/forceDelete/{id}', 'App\Http\Controllers\CategoryController@forceDelete')->name('categories.forceDelete');

@@ -239,7 +239,7 @@
                             <!-- <li><a href="./index-2.html">Home 2</a></li> -->
                         </ul>
                         <ul aria-expanded="false">
-                            <li><a href="./index.html">Categories</a></li>
+                            <li><a href="{{ url('categories') }}">Categories</a></li>
                             <!-- <li><a href="./index-2.html">Home 2</a></li> -->
                         </ul>
                         <ul aria-expanded="false">

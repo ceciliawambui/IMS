@@ -17,6 +17,13 @@ class Supplier extends Model
         'phone',
         'product_category'
     ];
+    public function category()
+    {
+        // return $this->hasMany(Category::class);
+        return $this->belongsToMany(Category::class, 'supplier_categories');
+    }
+
+
     use SoftDeletes;
     protected $dates = ['deleted_at'];
 }
