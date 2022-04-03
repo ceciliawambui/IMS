@@ -5,7 +5,7 @@
     <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Add Supplier</title>
+        <title>Edit Supplier</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <style>
             body {
@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
-                    <h4 style="text-align: center">Add Supplier</h4>
+                    <h4 style="text-align: center">Edit Supplier</h4>
                     {{-- <a class="btn btn-success btn-sm" href="{{ route('department.index') }}"> Back</a> --}}
                     @if (session('status'))
                         <div class="alert alert-success mb-1 mt-1">

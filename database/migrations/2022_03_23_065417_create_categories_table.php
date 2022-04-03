@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('image');
             $table->string('name');
             $table->integer('supplier_id');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

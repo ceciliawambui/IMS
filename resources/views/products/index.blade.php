@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Suppliers</title>
+    <title>Products</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -45,20 +45,20 @@
                 <div>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item active" aria-current="page">Suppliers</li>
+                            <li class="breadcrumb-item active" aria-current="page">Products</li>
                         </ol>
                     </nav>
 
                 </div>
                 <div>
-                    <a class="btn btn-success" href="{{ route('suppliers.create') }}"> Create Supplier</a>
+                    <a class="btn btn-success" href="{{ route('products.create') }}"> Create Product</a>
                 </div>
                 <div></div>
                 <div></div>
                 <div>
                     <form name="viewTrashed" class="d-flex float-right">
                         <select name="trashed" id="trashed" class="form-control mr-2 size=5">
-                            <option value="">View Suppliers</option>
+                            <option value="">View Products</option>
                             <option value="1">View Trashed</option>
                         </select>
                         <button type="button" id="filterTrashed" class="btn btn-sm btn-success btn-xs">Filter</button>
@@ -77,12 +77,12 @@
             <table class="table table-bordered" id="datatable-crud" style="width: 100%">
                 <thead>
                     <tr>
+                        <th>Image</th>
                         <th>Name</th>
-                        <th>Address</th>
-                        <th>Location</th>
-                        <th>Contact Person</th>
-                        <th>Phone</th>
-                        <th>Product Category</th>
+                        <th>Category</th>
+                        <th>Quantity</th>
+                        <th>Buying Price</th>
+                        <th>Selling Price</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -101,34 +101,34 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: "{{ url('suppliers') }}",
+                url: "{{ url('products') }}",
                 data: function(value) {
                     value.trashed = $("#trashed").val()
                 }
             },
             columns: [{
+                    data: 'image',
+                    name: 'image'
+                },
+                {
                     data: 'name',
                     name: 'name'
                 },
                 {
-                    data: 'address',
-                    name: 'address'
+                    data: 'category',
+                    name: 'category_id'
                 },
                 {
-                    data: 'location',
-                    name: 'location'
+                    data: 'quantity',
+                    name: 'quantity'
                 },
                 {
-                    data: 'contact_person',
-                    name: 'contact_person'
+                    data: 'buying_price',
+                    name: 'buying_price'
                 },
                 {
-                    data: 'phone',
-                    name: 'phone'
-                },
-                {
-                    data: 'product_category',
-                    name: 'product_category'
+                    data: 'selling_price',
+                    name: 'selling_price'
                 },
                 {
                     data: 'action',
@@ -146,7 +146,7 @@
                 // ajax
                 $.ajax({
                     type: "POST",
-                    url: "{{ url('delete-supplier') }}",
+                    url: "{{ url('delete-product') }}",
                     data: {
                         id: id
                     },
@@ -158,8 +158,6 @@
                 });
             }
         });
-        // $('.dataTables_filter input[type="search"]')
-        //     .attr('placeholder', '  Search...')
         $('#filterTrashed').click(function() {
             $('#datatable-crud').DataTable().draw(true)
         })
@@ -167,5 +165,3 @@
 </script>
 
 </html>
-
-

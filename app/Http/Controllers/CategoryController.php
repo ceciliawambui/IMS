@@ -119,11 +119,11 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category, $id)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'name' => 'required',
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|unique:categories',
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'supplier_id'=>'required',
 
         ]);
@@ -148,7 +148,7 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Category $category, Request $request)
     {
         $com = Category::where('id',$request->id)->delete();
         return Response()->json($com);

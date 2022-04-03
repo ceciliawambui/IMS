@@ -33,3 +33,9 @@ Route::resource('categories', 'App\Http\Controllers\CategoryController');
 Route::post('delete-category', 'App\Http\Controllers\CategoryController@destroy');
 Route::get('categories/restore/{id}', 'App\Http\Controllers\CategoryController@restore')->name('categories.restore');
 Route::get('categories/forceDelete/{id}', 'App\Http\Controllers\CategoryController@forceDelete')->name('categories.forceDelete');
+
+// Product Routes
+Route::resource('products', 'App\Http\Controllers\ProductController');
+Route::post('delete-product', 'App\Http\Controllers\ProductController@destroy');
+Route::get('products/restore/{id}', 'App\Http\Controllers\ProductController@restore')->name('products.restore');
+Route::get('products/forceDelete/{id}', 'App\Http\Controllers\ProductController@forceDelete')->name('products.forceDelete');
