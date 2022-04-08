@@ -1,3 +1,6 @@
+{{-- @extends('suppliers.base')
+@extends('layouts.sidenav')
+@section('content') --}}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,7 +42,8 @@
 </head>
 
 <body>
-    <div class="container mt-2">
+    <div class="container-fluid mt-2">
+        @yield('content')
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div>
@@ -100,6 +104,7 @@
         $('#datatable-crud').DataTable({
             processing: true,
             serverSide: true,
+            responsive:true,
             ajax: {
                 url: "{{ url('suppliers') }}",
                 data: function(value) {
@@ -167,5 +172,6 @@
 </script>
 
 </html>
+{{-- @endsection --}}
 
 

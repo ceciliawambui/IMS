@@ -1,13 +1,9 @@
-{{-- @extends('layouts.app')
-@extends('layouts.sidenav')
-@section('content') --}}
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Categories</title>
+    <title>Sales</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -44,26 +40,26 @@
 
 <body>
     <div class="container-fluid mt-2">
-        @yield('content')
+
         <div class="row">
-            <div class="col-lg-12 margin-tb">
+            <div class="col-lg-12">
                 <div>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item active" aria-current="page">Categories</li>
+                            <li class="breadcrumb-item active" aria-current="page">Sales</li>
                         </ol>
                     </nav>
 
                 </div>
                 <div>
-                    <a class="btn btn-success" href="{{ route('categories.create') }}"> Create Category</a>
+                    <a class="btn btn-success" href="{{ route('sales.create') }}"> Register Sale</a>
                 </div>
                 <div></div>
                 <div></div>
                 <div>
                     <form name="viewTrashed" class="d-flex float-right">
                         <select name="trashed" id="trashed" class="form-control mr-2 size=5">
-                            <option value="">View Categories</option>
+                            <option value="">View Sales</option>
                             <option value="1">View Trashed</option>
                         </select>
                         <button type="button" id="filterTrashed" class="btn btn-sm btn-success btn-xs">Filter</button>
@@ -82,9 +78,13 @@
             <table class="table table-bordered" id="datatable-crud" style="width: 100%">
                 <thead>
                     <tr>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Supplier</th>
+                        <th>Date</th>
+                        <th>Customer</th>
+                        <th>Product Image</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total Amount</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -103,22 +103,38 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: "{{ url('categories') }}",
+                url: "{{ url('sales') }}",
                 data: function(value) {
                     value.trashed = $("#trashed").val()
                 }
             },
             columns: [{
-                    data: 'image',
-                    name: 'image'
+                    data: 'date',
+                    name: 'date'
                 },
                 {
-                    data: 'name',
-                    name: 'name'
+                    data: 'customer',
+                    name: 'customer'
                 },
                 {
-                    data: 'supplier',
-                    name: 'supplier_id'
+                    data: 'product_image',
+                    name: 'product_id'
+                },
+                {
+                    data: 'product_name',
+                    name: 'product_id'
+                },
+                {
+                    data: 'price',
+                    name: 'price'
+                },
+                {
+                    data: 'quantity',
+                    name: 'quantity'
+                },
+                {
+                    data: 'amount',
+                    name: 'amount'
                 },
                 {
                     data: 'action',
@@ -136,7 +152,7 @@
                 // ajax
                 $.ajax({
                     type: "POST",
-                    url: "{{ url('delete-category') }}",
+                    url: "{{ url('delete-sale') }}",
                     data: {
                         id: id
                     },
@@ -148,8 +164,6 @@
                 });
             }
         });
-        // $('.dataTables_filter input[type="search"]')
-        //     .attr('placeholder', '  Search...')
         $('#filterTrashed').click(function() {
             $('#datatable-crud').DataTable().draw(true)
         })
@@ -157,4 +171,3 @@
 </script>
 
 </html>
-{{-- @endsection --}}

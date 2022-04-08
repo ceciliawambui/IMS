@@ -1,6 +1,3 @@
-@extends('layouts.app')
-@extends('layouts.sidenav')
-@section('content')
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,60 +7,34 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Invent</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="quixlab/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
     <!-- Pignose Calender -->
-    <link href=".quixlab/plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
+    <link href="./plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
     <!-- Chartist -->
-    <link rel="stylesheet" href=".quixlab/plugins/chartist/css/chartist.min.css">
-    <link rel="stylesheet" href=".quixlab/plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
+    <link rel="stylesheet" href="./plugins/chartist/css/chartist.min.css">
+    <link rel="stylesheet" href="./plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
     <!-- Custom Stylesheet -->
-    <link href="quixlab/css/style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
 </head>
 
 <body>
-
-    <!--*******************
-        Preloader start
-    ********************-->
-    {{-- <div id="preloader">
-        <div class="loader">
-            <svg class="circular" viewBox="25 25 50 50">
-                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
-            </svg>
-        </div>
-    </div> --}}
-    <!--*******************
-        Preloader end
-    ********************-->
-
-
-    <!--**********************************
-        Main wrapper start
-    ***********************************-->
     <div id="main-wrapper">
-
-        <!--**********************************
-            Nav header start
-        ***********************************-->
         <div class="nav-header">
             <div class="brand-logo">
-                <a href="index.html">
-                    <b class="logo-abbr"><img src="quixlab/images/logo.png" alt=""> </b>
-                    <span class="logo-compact"><img src="./quixlab/images/logo-compact.png" alt=""></span>
-                    <span class="brand-title">
-                        <img src="quixlab/images/logo-text.png" alt="">
+                <a>
+                    {{-- <b class="logo-abbr"><img src="images/logo.png" alt=""> </b> --}}
+                    {{-- <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span> --}}
+                    <span class="text-center" style="color:white; font-size: 40px; padding:10px">
+                        Invent
+                        {{-- <img src="images/logo-text.png" alt=""> --}}
                     </span>
                 </a>
             </div>
         </div>
-        <!--**********************************
-            Nav header end
-        ***********************************-->
-
-        <!--**********************************
-            Header start
-        ***********************************-->
         <div class="header">
             <div class="header-content clearfix">
 
@@ -87,6 +58,47 @@
                 </div>
                 <div class="header-right">
                     <ul class="clearfix">
+                        <!-- Authentication Links -->
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li>
+                            @endif
+
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="dropdown">
+                                @if (Auth::user()->hasRole('admin'))
+                                    {{-- <li><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li> --}}
+                                    {{-- <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a></li> --}}
+                                    {{-- <li><a class="nav-link" href="{{ route('products.index') }}">Manage Products</a></li>
+                            <li><a class="nav-link" href="{{ route('categories.index') }}">Manage Categories</a>
+                            </li>
+                            <li><a class="nav-link" href="{{ route('suppliers.index') }}">Manage Suppliers</a></li> --}}
+                                @endif
+                                {{-- <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a></li> --}}
+                                {{-- <li><a class="nav-link" href="{{ route('products.index') }}">Manage Products</a></li> --}}
+                            <li class=" dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                {{ Auth::user()->name }}
+                            </li>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
+                            </div>
+                            </li>
+
+                            </li>
+                        @endguest
+                    </ul>
+                </div>
+
+                {{-- <div class="header-right">
+                    <ul class="clearfix">
                         <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
                                 <i class="mdi mdi-email-outline"></i>
                                 <span class="badge badge-pill gradient-1">3</span>
@@ -102,7 +114,7 @@
                                     <ul>
                                         <li class="notification-unread">
                                             <a href="javascript:void()">
-                                                <img class="float-left mr-3 avatar-img" src="quixlab/images/avatar/1.jpg" alt="">
+                                                <img class="float-left mr-3 avatar-img" src="images/avatar/1.jpg" alt="">
                                                 <div class="notification-content">
                                                     <div class="notification-heading">Saiful Islam</div>
                                                     <div class="notification-timestamp">08 Hours ago</div>
@@ -112,7 +124,7 @@
                                         </li>
                                         <li class="notification-unread">
                                             <a href="javascript:void()">
-                                                <img class="float-left mr-3 avatar-img" src="quixlab/images/avatar/2.jpg" alt="">
+                                                <img class="float-left mr-3 avatar-img" src="images/avatar/2.jpg" alt="">
                                                 <div class="notification-content">
                                                     <div class="notification-heading">Adam Smith</div>
                                                     <div class="notification-timestamp">08 Hours ago</div>
@@ -122,7 +134,7 @@
                                         </li>
                                         <li>
                                             <a href="javascript:void()">
-                                                <img class="float-left mr-3 avatar-img" src="quixlab/images/avatar/3.jpg" alt="">
+                                                <img class="float-left mr-3 avatar-img" src="images/avatar/3.jpg" alt="">
                                                 <div class="notification-content">
                                                     <div class="notification-heading">Barak Obama</div>
                                                     <div class="notification-timestamp">08 Hours ago</div>
@@ -132,7 +144,7 @@
                                         </li>
                                         <li>
                                             <a href="javascript:void()">
-                                                <img class="float-left mr-3 avatar-img" src="quixlab/images/avatar/4.jpg" alt="">
+                                                <img class="float-left mr-3 avatar-img" src="images/avatar/4.jpg" alt="">
                                                 <div class="notification-content">
                                                     <div class="notification-heading">Hilari Clinton</div>
                                                     <div class="notification-timestamp">08 Hours ago</div>
@@ -215,7 +227,7 @@
                         <li class="icons dropdown">
                             <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
                                 <span class="activity active"></span>
-                                <img src="quixlab/images/user/1.png" height="40" width="40" alt="">
+                                <img src="images/user/1.png" height="40" width="40" alt="">
                             </div>
                             <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
                                 <div class="dropdown-content-body">
@@ -239,7 +251,8 @@
                             </div>
                         </li>
                     </ul>
-                </div>
+                </div> --}}
+
             </div>
         </div>
         <!--**********************************
@@ -249,7 +262,7 @@
         <!--**********************************
             Sidebar start
         ***********************************-->
-        <div class="nk-sidebar">
+        {{-- <div class="nk-sidebar">
             <div class="nk-nav-scroll">
                 <ul class="metismenu" id="menu">
                     <li class="nav-label">Dashboard</li>
@@ -262,7 +275,7 @@
                             <!-- <li><a href="./index-2.html">Home 2</a></li> -->
                         </ul>
                     </li>
-                    {{-- <li class="mega-menu mega-menu-sm">
+                    <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Layouts</span>
                         </a>
@@ -280,8 +293,8 @@
                             <li><a href="./layout-fixed-header.html">Fixed Header</a></li>
                             <li><a href="layout-fixed-sidebar.html">Fixed Sidebar</a></li>
                         </ul>
-                    </li> --}}
-                    {{-- <li class="nav-label">Apps</li>
+                    </li>
+                    <li class="nav-label">Apps</li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-envelope menu-icon"></i> <span class="nav-text">Email</span>
@@ -395,8 +408,104 @@
                                     <li><a href="./page-error-503.html">Error 503</a></li>
                                 </ul>
                             </li>
-                        </ul> --}}
+                        </ul>
                     </li>
+                </ul>
+            </div>
+        </div> --}}
+
+        <div class="nk-sidebar">
+            <div class="nk-nav-scroll">
+                <ul class="metismenu" id="menu">
+                    <li class="nav-label"> Dashboard</a></li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ route('home') }}">Dashboard</a></li>
+                            <!-- <li><a href="./index-2.html">Home 2</a></li> -->
+                        </ul>
+                    </li>
+                    @if (Auth::user()->hasRole('admin'))
+                        <li class="mega-menu mega-menu-sm">
+                            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Manage
+                                    Suppliers</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a href="{{ url('suppliers') }}">Suppliers</a></li>
+                                <!-- <li><a href="./index-2.html">Home 2</a></li> -->
+                            </ul>
+                        </li>
+                        <li class="mega-menu mega-menu-sm">
+                            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                <i class="icon-envelope menu-icon"></i><span class="nav-text">Manage Categories
+                                </span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a href="{{ url('categories') }}">Categories</a></li>
+                                <!-- <li><a href="./index-2.html">Home 2</a></li> -->
+                            </ul>
+                        </li>
+                        <li class="mega-menu mega-menu-sm">
+                            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                <i class="icon-layers menu-icon"></i><span class="nav-text">Manage Products</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a href="{{ url('products') }}">Products</a></li>
+                                <!-- <li><a href="./index-2.html">Home 2</a></li> -->
+                            </ul>
+                        </li>
+                        <li class="mega-menu mega-menu-sm">
+                            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                <i class="icon-grid menu-icon"></i><span class="nav-text">Manage Sales</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a href="./index.html">Point Of Sale</a></li>
+                                <!-- <li><a href="./index-2.html">Home 2</a></li> -->
+                            </ul>
+                        </li>
+                        <li class="mega-menu mega-menu-sm">
+                            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                <i class="icon-graph menu-icon"></i><span class="nav-text">View Reports</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a href="./index.html">Reports</a></li>
+                                <!-- <li><a href="./index-2.html">Home 2</a></li> -->
+                            </ul>
+                        </li>
+                        <li class="mega-menu mega-menu-sm">
+                            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Manage Users</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a href="{{ route('users.index') }}">Users</a></li>
+                                <!-- <li><a href="./index-2.html">Home 2</a></li> -->
+                            </ul>
+                        </li>
+                        <li class="mega-menu mega-menu-sm">
+                            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                                <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Manage User
+                                    Roles</span>
+                            </a>
+                            <ul aria-expanded="false">
+                                <li><a href="{{ route('roles.index') }}">User Roles</a></li>
+                                <!-- <li><a href="./index-2.html">Home 2</a></li> -->
+                            </ul>
+                        </li>
+                    @endif
+                    @if (Auth::user()->hasRole('user'))
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-grid menu-icon"></i><span class="nav-text">Manage Sales</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./index.html">Point Of Sale</a></li>
+                            <!-- <li><a href="./index-2.html">Home 2</a></li> -->
+                        </ul>
+                    </li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -580,7 +689,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="text-center">
-                                    <img src="./quixlab/images/users/8.jpg" class="rounded-circle" alt="">
+                                    <img src="./images/users/8.jpg" class="rounded-circle" alt="">
                                     <h5 class="mt-3 mb-1">Ana Liem</h5>
                                     <p class="m-0">Senior Manager</p>
                                     <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
@@ -604,7 +713,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="text-center">
-                                    <img src="./quixlab/images/users/7.jpg" class="rounded-circle" alt="">
+                                    <img src="./images/users/7.jpg" class="rounded-circle" alt="">
                                     <h5 class="mt-3 mb-1">John Doe</h5>
                                     <p class="m-0">Sales Man</p>
                                     <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
@@ -616,7 +725,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="text-center">
-                                    <img src="./quixlab/images/users/1.jpg" class="rounded-circle" alt="">
+                                    <img src="./images/users/1.jpg" class="rounded-circle" alt="">
                                     <h5 class="mt-3 mb-1">Mehedi Titas</h5>
                                     <p class="m-0">Online Marketer</p>
                                     <!-- <a href="javascript:void()" class="btn btn-sm btn-warning">Send Message</a> -->
@@ -646,7 +755,7 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td><img src="./quixlab/images/avatar/1.jpg" class=" rounded-circle mr-3" alt="">Sarah Smith</td>
+                                                    <td><img src="./images/avatar/1.jpg" class=" rounded-circle mr-3" alt="">Sarah Smith</td>
                                                     <td>iPhone X</td>
                                                     <td>
                                                         <span>United States</span>
@@ -665,7 +774,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><img src="./quixlab/images/avatar/2.jpg" class=" rounded-circle mr-3" alt="">Walter R.</td>
+                                                    <td><img src="./images/avatar/2.jpg" class=" rounded-circle mr-3" alt="">Walter R.</td>
                                                     <td>Pixel 2</td>
                                                     <td><span>Canada</span></td>
                                                     <td>
@@ -682,7 +791,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><img src="./quixlab/images/avatar/3.jpg" class=" rounded-circle mr-3" alt="">Andrew D.</td>
+                                                    <td><img src="./images/avatar/3.jpg" class=" rounded-circle mr-3" alt="">Andrew D.</td>
                                                     <td>OnePlus</td>
                                                     <td><span>Germany</span></td>
                                                     <td>
@@ -699,7 +808,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><img src="./quixlab/images/avatar/6.jpg" class=" rounded-circle mr-3" alt=""> Megan S.</td>
+                                                    <td><img src="./images/avatar/6.jpg" class=" rounded-circle mr-3" alt=""> Megan S.</td>
                                                     <td>Galaxy</td>
                                                     <td><span>Japan</span></td>
                                                     <td>
@@ -716,7 +825,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><img src="./quixlab/images/avatar/4.jpg" class=" rounded-circle mr-3" alt=""> Doris R.</td>
+                                                    <td><img src="./images/avatar/4.jpg" class=" rounded-circle mr-3" alt=""> Doris R.</td>
                                                     <td>Moto Z2</td>
                                                     <td><span>England</span></td>
                                                     <td>
@@ -733,7 +842,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><img src="./quixlab/images/avatar/5.jpg" class=" rounded-circle mr-3" alt="">Elizabeth W.</td>
+                                                    <td><img src="./images/avatar/5.jpg" class=" rounded-circle mr-3" alt="">Elizabeth W.</td>
                                                     <td>Notebook Asus</td>
                                                     <td><span>China</span></td>
                                                     <td>
@@ -803,49 +912,49 @@
                                 <h4 class="card-title">Activity</h4>
                                 <div id="activity">
                                     <div class="media border-bottom-1 pt-3 pb-3">
-                                        <img width="35" src="./quixlab/images/avatar/1.jpg" class="mr-3 rounded-circle">
+                                        <img width="35" src="./images/avatar/1.jpg" class="mr-3 rounded-circle">
                                         <div class="media-body">
                                             <h5>Received New Order</h5>
                                             <p class="mb-0">I shared this on my fb wall a few months back,</p>
                                         </div><span class="text-muted ">April 24, 2018</span>
                                     </div>
                                     <div class="media border-bottom-1 pt-3 pb-3">
-                                        <img width="35" src="./quixlab/images/avatar/2.jpg" class="mr-3 rounded-circle">
+                                        <img width="35" src="./images/avatar/2.jpg" class="mr-3 rounded-circle">
                                         <div class="media-body">
                                             <h5>iPhone develered</h5>
                                             <p class="mb-0">I shared this on my fb wall a few months back,</p>
                                         </div><span class="text-muted ">April 24, 2018</span>
                                     </div>
                                     <div class="media border-bottom-1 pt-3 pb-3">
-                                        <img width="35" src="./quixlab/images/avatar/2.jpg" class="mr-3 rounded-circle">
+                                        <img width="35" src="./images/avatar/2.jpg" class="mr-3 rounded-circle">
                                         <div class="media-body">
                                             <h5>3 Order Pending</h5>
                                             <p class="mb-0">I shared this on my fb wall a few months back,</p>
                                         </div><span class="text-muted ">April 24, 2018</span>
                                     </div>
                                     <div class="media border-bottom-1 pt-3 pb-3">
-                                        <img width="35" src="./quixlab/images/avatar/2.jpg" class="mr-3 rounded-circle">
+                                        <img width="35" src="./images/avatar/2.jpg" class="mr-3 rounded-circle">
                                         <div class="media-body">
                                             <h5>Join new Manager</h5>
                                             <p class="mb-0">I shared this on my fb wall a few months back,</p>
                                         </div><span class="text-muted ">April 24, 2018</span>
                                     </div>
                                     <div class="media border-bottom-1 pt-3 pb-3">
-                                        <img width="35" src="./quixlab/images/avatar/2.jpg" class="mr-3 rounded-circle">
+                                        <img width="35" src="./images/avatar/2.jpg" class="mr-3 rounded-circle">
                                         <div class="media-body">
                                             <h5>Branch open 5 min Late</h5>
                                             <p class="mb-0">I shared this on my fb wall a few months back,</p>
                                         </div><span class="text-muted ">April 24, 2018</span>
                                     </div>
                                     <div class="media border-bottom-1 pt-3 pb-3">
-                                        <img width="35" src="./quixlab/images/avatar/2.jpg" class="mr-3 rounded-circle">
+                                        <img width="35" src="./images/avatar/2.jpg" class="mr-3 rounded-circle">
                                         <div class="media-body">
                                             <h5>New support ticket received</h5>
                                             <p class="mb-0">I shared this on my fb wall a few months back,</p>
                                         </div><span class="text-muted ">April 24, 2018</span>
                                     </div>
                                     <div class="media pt-3 pb-3">
-                                        <img width="35" src="./quixlab/images/avatar/3.jpg" class="mr-3 rounded-circle">
+                                        <img width="35" src="./images/avatar/3.jpg" class="mr-3 rounded-circle">
                                         <div class="media-body">
                                             <h5>Facebook Post 30 Comments</h5>
                                             <p class="mb-0">I shared this on my fb wall a few months back,</p>
@@ -966,7 +1075,7 @@
         ***********************************-->
         <div class="footer">
             <div class="copyright">
-                <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Quixlab</a> 2018. Downloaded from <a href="https://themeslab.org/" target="_blank">Themeslab</a></p>
+                <p>Copyright &copy; Designed & Developed by C.M Wambui 2022.</p>
             </div>
         </div>
         <!--**********************************
@@ -986,29 +1095,28 @@
     <script src="quixlab/js/gleek.js"></script>
     <script src="quixlab/js/styleSwitcher.js"></script>
 
+
     <!-- Chartjs -->
-    <script src=".quixlab/plugins/chart.js/Chart.bundle.min.js"></script>
+    <script src="./quixlab/plugins/chart.js/Chart.bundle.min.js"></script>
     <!-- Circle progress -->
-    <script src=".quixlab/plugins/circle-progress/circle-progress.min.js"></script>
+    <script src="./quixlab/plugins/circle-progress/circle-progress.min.js"></script>
     <!-- Datamap -->
-    <script src=".quixlab/plugins/d3v3/index.js"></script>
-    <script src=".quixlab/plugins/topojson/topojson.min.js"></script>
-    <script src=".quixlab/plugins/datamaps/datamaps.world.min.js"></script>
+    <script src="./quixlab/plugins/d3v3/index.js"></script>
+    <script src="./quixlab/plugins/topojson/topojson.min.js"></script>
+    <script src="./quixlab/plugins/datamaps/datamaps.world.min.js"></script>
     <!-- Morrisjs -->
-    <script src=".quixlab/plugins/raphael/raphael.min.js"></script>
-    <script src=".quixlab/plugins/morris/morris.min.js"></script>
+    <script src="./quixlab/plugins/raphael/raphael.min.js"></script>
+    <script src="./quixlab/plugins/morris/morris.min.js"></script>
     <!-- Pignose Calender -->
-    <script src=".quixlab/plugins/moment/moment.min.js"></script>
-    <script src=".quixlab/plugins/pg-calendar/js/pignose.calendar.min.js"></script>
+    <script src="./quixlab/plugins/moment/moment.min.js"></script>
+    <script src="./quixlab/plugins/pg-calendar/js/pignose.calendar.min.js"></script>
     <!-- ChartistJS -->
-    <script src=".quixlab/plugins/chartist/js/chartist.min.js"></script>
-    <script src=".quixlab/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
+    <script src="./quixlab/plugins/chartist/js/chartist.min.js"></script>
+    <script src="./quixlab/plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
 
-
-
-    <script src=".quixlab/js/dashboard/dashboard-1.js"></script>
+    <script src="./quixlab/js/dashboard/dashboard-1.js"></script>
+</div>
 
 </body>
 
 </html>
-@endsection

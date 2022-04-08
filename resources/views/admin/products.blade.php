@@ -831,7 +831,7 @@
                                         </div><span class="text-muted ">April 24, 2018</span>
                                     </div>
                                     <div class="media border-bottom-1 pt-3 pb-3">
-                                        <img width="35" src="./quixlab/images/avatar/2.jpg" class="mr-3 rounded-circle">
+                                        <img width="35" src="./images/avatar/2.jpg" class="mr-3 rounded-circle">
                                         <div class="media-body">
                                             <h5>Branch open 5 min Late</h5>
                                             <p class="mb-0">I shared this on my fb wall a few months back,</p>

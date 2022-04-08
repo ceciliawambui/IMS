@@ -92,7 +92,44 @@
                 </div>
             </div>
             <div class="header-right">
-                <ul class="clearfix">
+                <ul class="navbar-nav ms-auto">
+                    <!-- Authentication Links -->
+                    @guest
+                        @if (Route::has('login'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                        @endif
+
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
+                        @endif
+                    @else
+                        <li class="dropdown">
+                            @if (Auth::user()->hasRole('admin'))
+                        <li><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li>
+                        <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a></li>
+                        {{-- <li><a class="nav-link" href="{{ route('products.index') }}">Manage Products</a></li>
+                        <li><a class="nav-link" href="{{ route('categories.index') }}">Manage Categories</a></li>
+                        <li><a class="nav-link" href="{{ route('suppliers.index') }}">Manage Suppliers</a></li> --}}
+                        @endif
+                        {{-- <li><a class="nav-link" href="{{ route('roles.index') }}">Manage Role</a></li> --}}
+                        {{-- <li><a class="nav-link" href="{{ route('products.index') }}">Manage Products</a></li> --}}
+                        <li class=" dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            {{ Auth::user()->name }}
+                        </li>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
+                        </div>
+                        </li>
+
+                        </li>
+                    @endguest
+                </ul>
+                {{-- <ul class="clearfix">
                     <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
                             <i class="mdi mdi-email-outline"></i>
                             <span class="badge badge-pill gradient-1">3</span>
@@ -258,7 +295,7 @@
                             </div>
                         </div>
                     </li>
-                </ul>
+                </ul> --}}
             </div>
         </div>
     </div>
@@ -276,27 +313,27 @@
                     <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                         <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
                     </a>
-                    <ul aria-expanded="false">
-                        <li><a href="{{ url('suppliers') }}">Suppliers</a></li>
-                        <!-- <li><a href="./index-2.html">Home 2</a></li> -->
-                    </ul>
-                    <ul aria-expanded="false">
-                        <li><a href="{{ url('categories') }}">Categories</a></li>
-                        <!-- <li><a href="./index-2.html">Home 2</a></li> -->
-                    </ul>
-                    <ul aria-expanded="false">
-                        <li><a href="{{ url('products') }}">Products</a></li>
-                        <!-- <li><a href="./index-2.html">Home 2</a></li> -->
-                    </ul>
-                    <ul aria-expanded="false">
-                        <li><a href="./index.html">Point Of Sale</a></li>
-                        <!-- <li><a href="./index-2.html">Home 2</a></li> -->
-                    </ul>
-                    <ul aria-expanded="false">
-                        <li><a href="./index.html">Reports</a></li>
-                        <!-- <li><a href="./index-2.html">Home 2</a></li> -->
-                    </ul>
                 </li>
+                <ul aria-expanded="false">
+                    <li><a href="{{ url('suppliers') }}">Suppliers</a></li>
+                    <!-- <li><a href="./index-2.html">Home 2</a></li> -->
+                </ul>
+                <ul aria-expanded="false">
+                    <li><a href="{{ url('categories') }}">Categories</a></li>
+                    <!-- <li><a href="./index-2.html">Home 2</a></li> -->
+                </ul>
+                <ul aria-expanded="false">
+                    <li><a href="{{ url('products') }}">Products</a></li>
+                    <!-- <li><a href="./index-2.html">Home 2</a></li> -->
+                </ul>
+                <ul aria-expanded="false">
+                    <li><a href="./index.html">Point Of Sale</a></li>
+                    <!-- <li><a href="./index-2.html">Home 2</a></li> -->
+                </ul>
+                <ul aria-expanded="false">
+                    <li><a href="./index.html">Reports</a></li>
+                    <!-- <li><a href="./index-2.html">Home 2</a></li> -->
+                </ul>
                 {{-- <li class="mega-menu mega-menu-sm">
                 <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                     <i class="icon-globe-alt menu-icon"></i><span class="nav-text">Layouts</span>

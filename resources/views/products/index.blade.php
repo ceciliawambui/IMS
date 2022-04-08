@@ -1,3 +1,6 @@
+{{-- @extends('products.base')
+@extends('layouts.sidenav')
+@section('content') --}}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,9 +42,10 @@
 </head>
 
 <body>
-    <div class="container mt-2">
+    <div class="container-fluid mt-2">
+
         <div class="row">
-            <div class="col-lg-12 margin-tb">
+            <div class="col-lg-12">
                 <div>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
@@ -165,3 +169,4 @@
 </script>
 
 </html>
+{{-- @endsection --}}

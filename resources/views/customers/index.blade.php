@@ -1,13 +1,9 @@
-{{-- @extends('layouts.app')
-@extends('layouts.sidenav')
-@section('content') --}}
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Categories</title>
+    <title>Customers</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -50,20 +46,20 @@
                 <div>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item active" aria-current="page">Categories</li>
+                            <li class="breadcrumb-item active" aria-current="page">Customers</li>
                         </ol>
                     </nav>
 
                 </div>
                 <div>
-                    <a class="btn btn-success" href="{{ route('categories.create') }}"> Create Category</a>
+                    <a class="btn btn-success" href="{{ route('customers.create') }}"> Create Customer</a>
                 </div>
                 <div></div>
                 <div></div>
                 <div>
                     <form name="viewTrashed" class="d-flex float-right">
                         <select name="trashed" id="trashed" class="form-control mr-2 size=5">
-                            <option value="">View Categories</option>
+                            <option value="">View Customers</option>
                             <option value="1">View Trashed</option>
                         </select>
                         <button type="button" id="filterTrashed" class="btn btn-sm btn-success btn-xs">Filter</button>
@@ -82,9 +78,8 @@
             <table class="table table-bordered" id="datatable-crud" style="width: 100%">
                 <thead>
                     <tr>
-                        <th>Image</th>
                         <th>Name</th>
-                        <th>Supplier</th>
+                        <th>Phone Number</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -102,23 +97,21 @@
         $('#datatable-crud').DataTable({
             processing: true,
             serverSide: true,
+            responsive:true,
             ajax: {
-                url: "{{ url('categories') }}",
+                url: "{{ url('customers') }}",
                 data: function(value) {
                     value.trashed = $("#trashed").val()
                 }
             },
-            columns: [{
-                    data: 'image',
-                    name: 'image'
-                },
+            columns: [
                 {
                     data: 'name',
                     name: 'name'
                 },
                 {
-                    data: 'supplier',
-                    name: 'supplier_id'
+                    data: 'phone',
+                    name: 'phone'
                 },
                 {
                     data: 'action',
@@ -136,7 +129,7 @@
                 // ajax
                 $.ajax({
                     type: "POST",
-                    url: "{{ url('delete-category') }}",
+                    url: "{{ url('delete-customer') }}",
                     data: {
                         id: id
                     },
@@ -157,4 +150,4 @@
 </script>
 
 </html>
-{{-- @endsection --}}
+
