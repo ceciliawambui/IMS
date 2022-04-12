@@ -22,7 +22,7 @@ class Category extends Model
     public function supplier()
     {
         // return $this->belongsTo(Supplier::class, 'supplier_id', 'id');
-        return $this->belongsToMany(Supplier::class, 'supplier_categories');
+        return $this->belongsToMany(Supplier::class, 'supplier_categories','supplier_id', 'category_id' );
     }
 
     public function product()

@@ -15,5 +15,10 @@ class Customer extends Model
     ];
     use SoftDeletes;
     protected $dates = ['deleted_at'];
+    public function points()
+    {
+        return $this->hasMany(Point::class);
+
+    }
 
 }

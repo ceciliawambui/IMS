@@ -82,4 +82,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('customers/restore/{id}', 'App\Http\Controllers\CustomerController@restore')->name('customers.restore');
     Route::get('customers/forceDelete/{id}', 'App\Http\Controllers\CustomerController@forceDelete')->name('customers.forceDelete');
 
+                // Points Routes
+    Route::resource('points', 'App\Http\Controllers\PointController');
+    Route::post('delete-customer', 'App\Http\Controllers\PointController@destroy');
+    Route::get('points/restore/{id}', 'App\Http\Controllers\PointController@restore')->name('points.restore');
+    Route::get('points/forceDelete/{id}', 'App\Http\Controllers\PointController@forceDelete')->name('points.forceDelete');
+
 });

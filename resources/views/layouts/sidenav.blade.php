@@ -151,6 +151,7 @@
                             <ul aria-expanded="false">
                                 <li><a href="{{ url('sales') }}">Point Of Sale</a></li>
                                 <li><a href="{{ url('customers') }}">Customers</a></li>
+                                <li><a href="{{ url('points') }}">Loyalty Points</a></li>
 
                             </ul>
                         </li>

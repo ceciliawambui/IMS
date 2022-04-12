@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('points', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
-            $table->string('name');
-            $table->unsignedBigInteger('supplier_id');
-            // $table->integer('supplier_id');
-            $table->softDeletes();
+            $table->unsignedBigInteger('customer_id');
+            $table->string('points');
+            $table->string('date');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('points');
     }
 };
