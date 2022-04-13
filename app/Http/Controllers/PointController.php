@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Point;
 use Illuminate\Http\Request;
+use App\Models\Customer;
 
 class PointController extends Controller
 {
@@ -16,9 +17,7 @@ class PointController extends Controller
     {
 
         if(request()->ajax()) {
-
-            $points = Point::with(['customer']);
-
+            $points = Point::with(['customers']);
             return datatables()->of($points)
                 ->filter(function($query) use($request){
                     $query->when($request->trashed == 1, function($trashedPoints){
@@ -26,14 +25,13 @@ class PointController extends Controller
                     });
                 })
                 ->editColumn('customer', function($point){
-                    return $point->customer?->name ?? "NA";
+                    return $point->customers?->name ?? "NA";
                 })
 
                 ->addColumn('action', function($point) use($request) {
                     return view('points.action', [
                         'id' => $point->id,
                         'trashed' => $request->trashed,
-
                     ]);
 
                 })
@@ -58,7 +56,7 @@ class PointController extends Controller
     public function create()
     {
         $customers = Customer::all();
-        return view('points.create');        //
+        return view('points.create',['customers' => $customers]);
     }
 
     /**
@@ -67,9 +65,18 @@ class PointController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+        $request->validate([
+            'customer_id'=>'required',
+            'points'=>'required',
+            'date'=>'required'
+        ]);
+        $point = new Point;
+        $point->customer_id = $request->customer_id;
+        $point->points = $request->points;
+        $point->date = $request->date;
+        $point->save();
+        return redirect()->route('points.index');
     }
 
     /**
@@ -80,7 +87,7 @@ class PointController extends Controller
      */
     public function show(Point $point)
     {
-        //
+        return view('points.show', compact('point'));
     }
 
     /**
@@ -91,7 +98,8 @@ class PointController extends Controller
      */
     public function edit(Point $point)
     {
-        //
+        $customers = Customer::all();
+        return view('points.edit', compact('point', 'customers'));
     }
 
     /**
@@ -103,7 +111,18 @@ class PointController extends Controller
      */
     public function update(Request $request, Point $point)
     {
-        //
+        $request->validate([
+            'customer_id'=>'required',
+            'points'=>'required',
+            'date'=>'required'
+        ]);
+        $point = Point::find($id);
+        $point->customer_id = $request->customer_id;
+        $point->points = $request->points;
+        $point->date = $request->date;
+        $point->save();
+        return redirect()->route('points.index');
+
     }
 
     /**
@@ -112,8 +131,21 @@ class PointController extends Controller
      * @param  \App\Models\Point  $point
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Point $point)
+    public function destroy(Point $point, Request $request)
     {
-        //
+        $com = Point::where('id',$request->id)->delete();
+        return Response()->json($com);
+    }
+    public function restore($id)
+    {
+        Point::where('id', $id)->withTrashed()->restore();
+
+        return redirect()->route('points.index');
+    }
+    public function forceDelete($id)
+    {
+        Point::where('id', $id)->onlyTrashed()->forceDelete();
+
+        return redirect()->route('points.index');
     }
 }

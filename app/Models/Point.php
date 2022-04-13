@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Point extends Model
 {
     use HasFactory;
-    protected $fillable =['customer_id', 'points'];
+    protected $fillable =['customer_id', 'points', 'date',];
 
     public function customers()
     {
