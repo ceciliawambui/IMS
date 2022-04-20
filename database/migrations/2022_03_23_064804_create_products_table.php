@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('name');
             $table->unsignedBigInteger('category_id');
             $table->string('quantity');
-            $table->string('buying_price');
-            $table->string('selling_price');
+            $table->decimal('buying_price');
+            $table->decimal('selling_price');
             $table->softDeletes();
             $table->timestamps();
         });

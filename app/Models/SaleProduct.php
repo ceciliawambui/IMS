@@ -6,15 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Point extends Model
+class SaleProduct extends Model
 {
     use HasFactory;
-    protected $fillable =['customer_id', 'points', 'date',];
     use SoftDeletes;
     protected $dates = ['deleted_at'];
 
-    public function customers()
+    protected $fillable=['product_id', 'total'];
+
+    public function products()
     {
-        return $this->belongsTo(Customer::class, 'customer_id', 'id');
+        return $this->hasMany(Product::class);
     }
 }

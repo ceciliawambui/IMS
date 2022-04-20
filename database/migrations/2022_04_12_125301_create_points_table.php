@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->string('points');
             $table->string('date');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

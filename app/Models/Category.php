@@ -19,10 +19,10 @@ class Category extends Model
         'name',
         'supplier_id'
     ];
-    public function supplier()
+    public function suppliers()
     {
-        // return $this->belongsTo(Supplier::class, 'supplier_id', 'id');
-        return $this->belongsToMany(Supplier::class, 'supplier_categories','supplier_id', 'category_id' );
+        return $this->belongsTo(Supplier::class, 'supplier_id', 'id');
+        // return $this->belongsToMany(Supplier::class, 'supplier_categories','supplier_id', 'category_id' );
     }
 
     public function product()

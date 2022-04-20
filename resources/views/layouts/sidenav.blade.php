@@ -205,15 +205,16 @@
 
             <div class="container-fluid mt-3">
                 <div class="row">
+
                     <div class="col-lg-3 col-sm-6">
-                        <div class="card gradient-1">
+                        <div class="card gradient-4">
                             <div class="card-body">
-                                <h3 class="card-title text-white">Products Sold</h3>
+                                <h3 class="card-title text-white">Products Available</h3>
                                 <div class="d-inline-block">
-                                    <h2 class="text-white">4565</h2>
-                                    <p class="text-white mb-0">Jan - March 2019</p>
+                                    <h2 class="text-white">{{$countProducts}}</h2>
+                                    <p class="text-white mb-0">2022</p>
                                 </div>
-                                <span class="float-right display-5 opacity-5"><i class="fa fa-shopping-cart"></i></span>
+                                <span class="float-right display-5 opacity-5"><i class="fa fa-product-hunt"></i></span>
                             </div>
                         </div>
                     </div>
@@ -221,12 +222,12 @@
                     <div class="col-lg-3 col-sm-6">
                         <div class="card gradient-2">
                             <div class="card-body">
-                                <h3 class="card-title text-white">Net Profit</h3>
+                                <h3 class="card-title text-white">Sales Made</h3>
                                 <div class="d-inline-block">
-                                    <h2 class="text-white">$ 8541</h2>
-                                    <p class="text-white mb-0">Jan - March 2019</p>
+                                    <h2 class="text-white">10</h2>
+                                    <p class="text-white mb-0">2022</p>
                                 </div>
-                                <span class="float-right display-5 opacity-5"><i class="fa fa-money"></i></span>
+                                <span class="float-right display-5 opacity-5"><i class="fa fa-bookmark"></i></span>
                             </div>
                         </div>
                     </div>
@@ -234,22 +235,75 @@
                     <div class="col-lg-3 col-sm-6">
                         <div class="card gradient-3">
                             <div class="card-body">
-                                <h3 class="card-title text-white">New Customers</h3>
+                                <h3 class="card-title text-white">Total Customers</h3>
                                 <div class="d-inline-block">
-                                    <h2 class="text-white">4565</h2>
-                                    <p class="text-white mb-0">Jan - March 2019</p>
+                                    <h2 class="text-white">{{$countCustomers}}</h2>
+                                    <p class="text-white mb-0">2022</p>
                                 </div>
                                 <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-6">
-                        <div class="card gradient-4">
+                        <div class="card gradient-1">
                             <div class="card-body">
-                                <h3 class="card-title text-white">Customer Satisfaction</h3>
+                                <h3 class="card-title text-white">Sales Amount</h3>
                                 <div class="d-inline-block">
-                                    <h2 class="text-white">99%</h2>
-                                    <p class="text-white mb-0">Jan - March 2019</p>
+                                    <h2 class="text-white">4565</h2>
+                                    <p class="text-white mb-0">2022</p>
+                                </div>
+                                <span class="float-right display-5 opacity-5"><i class="fa fa-shopping-cart"></i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card gradient-5">
+                            <div class="card-body">
+                                <h3 class="card-title text-white">Product Suppliers</h3>
+                                <div class="d-inline-block">
+                                    <h2 class="text-white">{{$countSuppliers}}</h2>
+                                    <p class="text-white mb-0">2022</p>
+                                </div>
+                                <span class="float-right display-5 opacity-5"><i class="fa fa-user"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    @if (Auth::user()->hasRole('admin'))
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card gradient-6">
+                            <div class="card-body">
+                                <h3 class="card-title text-white">Product Categories</h3>
+                                <div class="d-inline-block">
+                                    <h2 class="text-white">{{$countCategories}}</h2>
+                                    <p class="text-white mb-0">2022</p>
+                                </div>
+                                <span class="float-right display-5 opacity-5"><i class="fa fa-server"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                    {{-- <div class="col-lg-3 col-sm-6">
+                        <div class="card gradient-3">
+                            <div class="card-body">
+                                <h3 class="card-title text-white">Customer Loyalty Points</h3>
+                                <div class="d-inline-block">
+                                    <h2 class="text-white">10000</h2>
+                                    <p class="text-white mb-0">2022</p>
+                                </div>
+                                <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
+                            </div>
+                        </div>
+                    </div> --}}
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="card gradient-7">
+                            <div class="card-body">
+                                <h3 class="card-title text-white">System Users</h3>
+                                <div class="d-inline-block">
+                                    <h2 class="text-white">3</h2>
+                                    <p class="text-white mb-0">2022</p>
                                 </div>
                                 <span class="float-right display-5 opacity-5"><i class="fa fa-heart"></i></span>
                             </div>

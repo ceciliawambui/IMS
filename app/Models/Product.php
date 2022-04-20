@@ -27,8 +27,8 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
-    public function sale()
+    public function saleproducts()
     {
-        return $this->belongsTo(Sale::class, 'sale_id', 'id');
+        return $this->belongsTo(SaleProduct::class, 'sale_product_id', 'id');
     }
 }

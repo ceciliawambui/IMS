@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('image');
             $table->string('name');
             $table->unsignedBigInteger('supplier_id');
-            // $table->integer('supplier_id');
             $table->softDeletes();
             $table->timestamps();
         });

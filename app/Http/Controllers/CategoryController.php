@@ -16,7 +16,7 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         if(request()->ajax()) {
-            $categories = Category::with(['supplier']);
+            $categories = Category::with(['suppliers']);
 
             return datatables()->of($categories)
                 ->filter(function($query) use($request){
