@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('sale_products', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_id');
-            $table->decimal('quantity');
+            $table->string('quantity');
+            $table->decimal('price');
             $table->decimal('total');
             $table->softDeletes();
             $table->timestamps();

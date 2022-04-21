@@ -28,16 +28,16 @@ class SaleProductController extends Controller
                 ->editColumn('name', function($saleProduct){
                     return $saleProduct->products?->name ?? "NA";
                 })
-                ->editColumn('quantity', function($saleProduct){
-                    return $saleProduct->products?->quantity ?? "NA";
-                })
-                ->editColumn('price', function($saleProduct){
-                    return $saleProduct->products?->price ?? "NA";
-                })
+                // ->editColumn('quantity', function($saleProduct){
+                //     return $saleProduct->products?->quantity ?? "NA";
+                // })
+                // ->editColumn('price', function($saleProduct){
+                //     return $saleProduct->products?->price ?? "NA";
+                // })
 
                 ->addColumn('action', function($saleProduct) use($request) {
                     return view('saleproducts.action', [
-                        'id' => $point->id,
+                        'id' => $saleProduct->id,
                         'trashed' => $request->trashed,
                     ]);
 
@@ -70,14 +70,16 @@ class SaleProductController extends Controller
         $request->validate([
             'product_id'=>'required',
             'quantity'=>'required',
-            'total'=>'required'
+            'price'=>'required',
+            'total'=>''
         ]);
         $saleProduct = new SaleProduct;
         $saleProduct->product_id = $request->product_id;
         $saleProduct->quantity = $request->quantity;
-        $saleProduct->total = $request->total;
+        $saleProduct->price = $request->price;
+        $saleProduct->total = $request->price * $request->quantity;
         $saleProduct->save();
-        return redirect()->route('saleproducts.index');
+        return view('saleproducts.index');
     }
     /**
      * Display the specified resource.
@@ -115,14 +117,16 @@ class SaleProductController extends Controller
         $request->validate([
             'product_id'=>'required',
             'quantity'=>'required',
-            'total'=>'required'
+            'price'=>'required',
+            'total'=>''
         ]);
         $saleProduct = SaleProduct::find($id);
         $saleProduct->product_id = $request->product_id;
         $saleProduct->quantity = $request->quantity;
+        $saleProduct->price = $request->price;
         $saleProduct->total = $request->total;
         $saleProduct->save();
-        return redirect()->route('saleproducts.index');
+        return view('saleproducts.index');
 
     }
 
@@ -149,4 +153,19 @@ class SaleProductController extends Controller
 
         return redirect()->route('saleproducts.index');
     }
+
+
+    // public function search(Request $request){
+    //     // Get the search value from the request
+    //     $search = $request->input('search');
+
+    //     // Search in the title and body columns from the posts table
+    //     $posts = Post::query()
+    //         ->where('product_id', 'LIKE', "%{$search}%")
+    //         ->orWhere('product_id', 'LIKE', "%{$search}%")
+    //         ->get();
+
+    //     // Return the search view with the resluts compacted
+    //     return view('search', compact('products'));
+    // }
 }

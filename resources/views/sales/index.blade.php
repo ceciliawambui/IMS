@@ -52,7 +52,11 @@
 
                 </div>
                 <div>
-                    <a class="btn btn-success" href="{{ route('sales.create') }}"> Register Sale</a>
+                    <a class="btn btn-info btn-sm" href="{{ route('home') }}"> Back</a>
+                    <a class="btn btn-success btn-sm" href="{{ route('sales.create') }}"> Register Sale</a>
+                </div>
+                <div>
+
                 </div>
                 <div></div>
                 <div></div>

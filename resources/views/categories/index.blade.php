@@ -56,10 +56,16 @@
 
                 </div>
                 <div>
-                    <a class="btn btn-success" href="{{ route('categories.create') }}"> Create Category</a>
+
+                </div>
+                <br>
+
+                <div>
+                    <a class="btn btn-info btn-sm" href="{{ route('home') }}"> Back</a>
+                    <a class="btn btn-success btn-sm" href="{{ route('categories.create') }}"> Create Category</a>
                 </div>
                 <div></div>
-                <div></div>
+
                 <div>
                     <form name="viewTrashed" class="d-flex float-right">
                         <select name="trashed" id="trashed" class="form-control mr-2 size=5">

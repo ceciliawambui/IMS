@@ -93,5 +93,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('delete-sale-product', 'App\Http\Controllers\SaleProductController@destroy');
     Route::get('sale_products/restore/{id}', 'App\Http\Controllers\SaleProductController@restore')->name('sale_products.restore');
     Route::get('sale_products/forceDelete/{id}', 'App\Http\Controllers\SaleProductController@forceDelete')->name('sale_products.forceDelete');
-
+    // Route::get('search', 'App\Http\Controllers\SaleProductController@search')->name('search');
 });

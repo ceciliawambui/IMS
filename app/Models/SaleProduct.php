@@ -12,10 +12,11 @@ class SaleProduct extends Model
     use SoftDeletes;
     protected $dates = ['deleted_at'];
 
-    protected $fillable=['product_id', 'total'];
+    protected $fillable=['product_id','quantity', 'price','total'];
+
 
     public function products()
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 }

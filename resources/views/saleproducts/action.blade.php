@@ -2,9 +2,9 @@
 <a href="{{ route('sale_products.edit',$id) }}" data-toggle="tooltip" data-original-title="Edit" class="edit btn btn-primary edit btn-xs">
     Edit
 </a>
-<a href="javascript:void(0)" data-id="{{ $id }}" data-toggle="tooltip" data-original-title="Delete" class="delete btn btn-dark btn-xs">
+{{-- <a href="javascript:void(0)" data-id="{{ $id }}" data-toggle="tooltip" data-original-title="Delete" class="delete btn btn-dark btn-xs">
     Trash
-</a>
+</a> --}}
 
 @endif
 @if($trashed == 1)

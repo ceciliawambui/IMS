@@ -28,7 +28,7 @@ class CategoryController extends Controller
                     return $category->suppliers?->name ?? "NA";
                 })
                 ->editColumn('image', function($category){;
-                    return '<img src="'."storage/images/".$category->image .'"width="50" height="40" />';
+                    return '<img src="'."storage/images/".$category->image .'"width="70" height="60" />';
                 })
                 ->addColumn('action', function($category) use($request) {
                     return view('categories.action', [

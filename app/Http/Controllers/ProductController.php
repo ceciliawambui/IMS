@@ -30,7 +30,7 @@ class ProductController extends Controller
                     return $product->category?->name ?? "NA";
                 })
                 ->editColumn('image', function($product){;
-                    return '<img src="'."storage/images/".$product->image .'"width="50" height="40" />';
+                    return '<img src="'."storage/images/".$product->image .'"width="70" height="60" />';
                 })
                 ->addColumn('action', function($product) use($request) {
                     return view('products.action', [

@@ -50,6 +50,13 @@
                     </div>
                     <div class="form-group">
                         <strong>Price</strong>
+                        <input type="number" name="price" class="form-control" placeholder="Price " required>
+                        @error('price')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    {{-- <div class="form-group">
+                        <strong>Price</strong>
                             <select class="form-control" name="product_id">
                                 <option value="">Please select the product price</option>
                                 @foreach ($products as $product)
@@ -61,14 +68,14 @@
                             <strong>{{ $errors->first('product_id') }}</strong>
                         </span>
                         @endif
-                    </div>
-                    <div class="form-group">
+                    </div> --}}
+                    {{-- <div class="form-group">
                         <strong>Total Amount</strong>
-                        <input type="number" name="total" class="form-control" placeholder="Total " required>
+                        <input type="number" name="total" class="form-control" placeholder="Total">
                         @error('total')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
-                    </div>
+                    </div> --}}
                     <div class="col-md-4"></div>
 
                     <button type="submit" class="btn btn-success btn-sm">Add</button>
