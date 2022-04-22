@@ -168,4 +168,16 @@ class SaleProductController extends Controller
     //     // Return the search view with the resluts compacted
     //     return view('search', compact('products'));
     // }
+    public function autocomplete(Request $request)
+    {
+        $data = [];
+
+        if($request->filled('q')){
+            $data = Product::select("name", "id")
+                        ->where('name', 'LIKE', '%'. $request->get('q'). '%')
+                        ->get();
+        }
+
+        return response()->json($data);
+    }
 }

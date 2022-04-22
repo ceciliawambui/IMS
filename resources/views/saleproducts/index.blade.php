@@ -15,6 +15,10 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
     <style>
         body {
@@ -59,20 +63,42 @@
                 <div class="row">
                     <div class="col-md-6">
                         <h5 class="text-center"><b>Make a Sale </b></h5>
-                        <a class="btn btn-info btn-sm " href="{{ route('home') }}"> Back</a>
-                        <a class="btn btn-success btn-sm" href="{{ route('sale_products.create') }}">Add Product</a>
+                        <a class="btn btn-info btn-sm" href="{{ route('home') }}"> Back</a>
+                        {{-- <a class="btn btn-success btn-sm" href="{{ route('sale_products.create') }}">Add Product</a> --}}
 
+                        <div class="float-right">
+                            <h4> Search for Product name</h4>
+                            <select class="form-control" id="search" style="width:300px;" name="product_id"></select>
+                            {{-- <a class="btn btn-success btn-sm" href="{{ route('sale_products.create') }}">Add</a> --}}
+                        </div>
 
+                        <script type="text/javascript">
+                            var path = "{{ route('autocomplete') }}";
 
-                        {{-- <form action="{{ route('search') }}" method="GET">
-                            <input type="text" name="search" required/>
-                            <button type="submit">Search</button>
-                        </form> --}}
+                            $('#search').select2({
+                                placeholder: 'Select a product',
+                                ajax: {
+                                    url: path,
+                                    dataType: 'json',
+                                    delay: 150,
+                                    processResults: function(data) {
+                                        return {
+                                            results: $.map(data, function(item) {
+                                                return {
+                                                    text: item.name,
+                                                    id: item.id
+                                                }
+                                            })
+
+                                        };
+                                    },
+                                    cache: true
+                                }
+                            });
+                        </script>
                     </div>
                     <div class="col-md-6">
                         <h5 class="text-center"><b>Mode of Payment</b></h5>
-
-
                     </div>
 
                 </div>
@@ -100,7 +126,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-6">
-                    <table class="table table-bordered" id="datatable-crud" style="width: 100%">
+                    {{-- <table class="table table-bordered" id="datatable-crud" style="width: 100%">
                         <thead>
                             <tr>
                                 <th>Product Name</th>
@@ -110,20 +136,23 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                    </table>
-                    <table class="table table-bordered" id="datatable-crud" style="width: 100%; background-color:black; color:white">
+                    </table> --}}
+                    {{-- <table class="table table-bordered" id="datatable-crud"
+                        style="width: 100%; background-color:black; color:white">
                         <thead>
                             <?php
-                            $total = 0;
-                            $total = DB::table('sale_products')->selectRaw('quantity * price')->sum('total');
+                            // $total = 0;
+                            // $total = DB::table('sale_products')
+                            //     ->selectRaw('quantity * price')
+                            //     ->sum('total');
                             ?>
                             <tr>
                                 <th style="font-size: 40px">Total</th>
-                                <th style="font-size: 40px">{{$total}}</th>
+                                <th style="font-size: 40px">{{ $total }}</th>
                             </tr>
 
                         </thead>
-                    </table>
+                    </table> --}}
 
                 </div>
                 <div class="col-md-6">
@@ -134,9 +163,12 @@
                                 <img class="card-img-top" src="mode of payment.jpg" alt="Card image cap">
 
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">ATM Card <button type="button" class="btn btn-success float-right">PAY</button></li>
-                                    <li class="list-group-item">Mpesa<button type="button" class="btn btn-success float-right">PAY</button></li>
-                                    <li class="list-group-item">Cash <button type="button" class="btn btn-success float-right">PAY</button></li>
+                                    <li class="list-group-item">ATM Card <button type="button"
+                                            class="btn btn-success float-right">PAY</button></li>
+                                    <li class="list-group-item">Mpesa<button type="button"
+                                            class="btn btn-success float-right">PAY</button></li>
+                                    <li class="list-group-item">Cash <button type="button"
+                                            class="btn btn-success float-right">PAY</button></li>
                                 </ul>
 
                             </div>
@@ -144,15 +176,9 @@
                         </div>
                         <div class="col-md-3"></div>
                     </div>
-
-
-
-
                 </div>
 
             </div>
-
-
         </div>
     </div>
 
@@ -225,4 +251,5 @@
 </body>
 
 </html>
+
 {{-- @endsection --}}

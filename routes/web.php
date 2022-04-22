@@ -94,4 +94,13 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('sale_products/restore/{id}', 'App\Http\Controllers\SaleProductController@restore')->name('sale_products.restore');
     Route::get('sale_products/forceDelete/{id}', 'App\Http\Controllers\SaleProductController@forceDelete')->name('sale_products.forceDelete');
     // Route::get('search', 'App\Http\Controllers\SaleProductController@search')->name('search');
+
+    // Search Routes
+    Route::controller(App\Http\Controllers\SearchController::class)->group(function(){
+        Route::get('demo-search', 'index');
+        Route::get('autocomplete', 'autocomplete')->name('autocomplete');
+    });
+
+
 });
+
