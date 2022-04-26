@@ -101,6 +101,12 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('autocomplete', 'autocomplete')->name('autocomplete');
     });
 
+    // Other Routes
+    #Ajax AutoComplete Search
+Route::get('searchOne','App\Http\Controllers\SearchController@searchform')->name('search.form');
+Route::get('autosearch',array('as'=>'searchajax','uses'=>'App\Http\Controllers\SearchController@autoCompleteSearch'));
+Route::any('auto-search-result','App\Http\Controllers\SearchController@autoCompleteSearchResult')->name('search.list');
+
 
 });
 

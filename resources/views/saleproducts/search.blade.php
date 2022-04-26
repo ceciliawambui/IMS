@@ -1,4 +1,3 @@
-
 @if($products->isNotEmpty())
     @foreach ($products as $product)
         <div class="post-list">

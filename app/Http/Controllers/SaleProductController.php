@@ -124,7 +124,7 @@ class SaleProductController extends Controller
         $saleProduct->product_id = $request->product_id;
         $saleProduct->quantity = $request->quantity;
         $saleProduct->price = $request->price;
-        $saleProduct->total = $request->total;
+        $saleProduct->total = $request->price * $request->quantity;
         $saleProduct->save();
         return view('saleproducts.index');
 
